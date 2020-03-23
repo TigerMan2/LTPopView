@@ -1,6 +1,6 @@
 //
-//  LTPopViewTests.m
-//  LTPopViewTests
+//  TMPopViewTests.m
+//  TMPopViewTests
 //
 //  Created by wangpeng on 2018/11/1.
 //  Copyright © 2018 mrstock. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface LTPopViewTests : XCTestCase
+@interface TMPopViewTests : XCTestCase
 
 @end
 
-@implementation LTPopViewTests
+@implementation TMPopViewTests
 
 - (void)setUp {
     [super setUp];

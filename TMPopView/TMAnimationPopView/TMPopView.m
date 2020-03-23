@@ -1,17 +1,17 @@
 //
-//  LTPopView.m
-//  LTPopView
+//  TMPopView.m
+//  TMPopView
 //
 //  Created by wangpeng on 2018/11/1.
 //  Copyright © 2018 mrstock. All rights reserved.
 //
 
-#import "LTPopView.h"
+#import "TMPopView.h"
 
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 
-@interface LTPopView () <UIGestureRecognizerDelegate>
+@interface TMPopView () <UIGestureRecognizerDelegate>
 
 /**
  *  背景图
@@ -28,13 +28,13 @@
 /**
  *  样式
  */
-@property (nonatomic, assign) LTAnimationPopStyle style;
+@property (nonatomic, assign) TMAnimationPopStyle style;
 
 @end
 
-@implementation LTPopView
+@implementation TMPopView
 
-- (instancetype)initWithCustomView:(UIView *)customView style:(LTAnimationPopStyle)style {
+- (instancetype)initWithCustomView:(UIView *)customView style:(TMAnimationPopStyle)style {
     
     if (!customView) {
         return nil;
@@ -91,7 +91,7 @@
     NSTimeInterval defaultDuration = [self getPopDefaultDurationWithStyle:self.style];
     NSTimeInterval duration = (self.duration > 0.0f) ? self.duration : defaultDuration;
     
-    if (_style == LTAnimationPopStyleNO) {
+    if (_style == TMAnimationPopStyleNO) {
         self.alpha = 0.0;
         self.backgroundView.alpha = 0.0;
         [UIView animateWithDuration:duration animations:^{
@@ -110,24 +110,24 @@
 
 - (void)hanlePopAnimationWithDuration:(NSTimeInterval)duration {
     switch (self.style) {
-        case LTAnimationPopStyleScale:
+        case TMAnimationPopStyleScale:
         {
             [self animationWithLayer:self.contentView.layer duration:duration values:@[@0.0,@1.2,@1.0]];
         }
             break;
-        case LTAnimationPopStyleShakeFromTop:
-        case LTAnimationPopStyleShakeFromRight:
-        case LTAnimationPopStyleShakeFromBottom:
-        case LTAnimationPopStyleShakeFromLeft:
+        case TMAnimationPopStyleShakeFromTop:
+        case TMAnimationPopStyleShakeFromRight:
+        case TMAnimationPopStyleShakeFromBottom:
+        case TMAnimationPopStyleShakeFromLeft:
         {
             CGPoint startPoint = self.contentView.layer.position;
-            if (self.style == LTAnimationPopStyleShakeFromTop) {
+            if (self.style == TMAnimationPopStyleShakeFromTop) {
                 self.contentView.layer.position = CGPointMake(startPoint.x, -startPoint.y);
-            } else if (self.style == LTAnimationPopStyleShakeFromBottom) {
+            } else if (self.style == TMAnimationPopStyleShakeFromBottom) {
                 self.contentView.layer.position = CGPointMake(startPoint.x, (kHeight + startPoint.y));
-            } else if (self.style == LTAnimationPopStyleShakeFromLeft) {
+            } else if (self.style == TMAnimationPopStyleShakeFromLeft) {
                 self.contentView.layer.position = CGPointMake(-startPoint.x, startPoint.y);
-            } else if (self.style == LTAnimationPopStyleShakeFromRight) {
+            } else if (self.style == TMAnimationPopStyleShakeFromRight) {
                 self.contentView.layer.position = CGPointMake((kWidth + startPoint.x), startPoint.y);
             }
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -163,7 +163,7 @@
     
     NSTimeInterval duration = [self getPopDefaultDurationWithStyle:self.style];
     
-    if (self.style == LTAnimationPopStyleNO) {
+    if (self.style == TMAnimationPopStyleNO) {
         [UIView animateWithDuration:duration animations:^{
             self.alpha = 0.0;
             self.backgroundView.alpha = 0.0;
@@ -182,25 +182,25 @@
 - (void)hanleDismissAnimationDuration:(NSTimeInterval)duration {
 
     switch (self.style) {
-        case LTAnimationPopStyleScale:
+        case TMAnimationPopStyleScale:
         {
             [self animationWithLayer:self.contentView.layer duration:duration values:@[@1.0,@0.66,@0.33,@0.01]];
         }
             break;
-        case LTAnimationPopStyleShakeFromTop:
-        case LTAnimationPopStyleShakeFromBottom:
-        case LTAnimationPopStyleShakeFromLeft:
-        case LTAnimationPopStyleShakeFromRight:
+        case TMAnimationPopStyleShakeFromTop:
+        case TMAnimationPopStyleShakeFromBottom:
+        case TMAnimationPopStyleShakeFromLeft:
+        case TMAnimationPopStyleShakeFromRight:
         {
             CGPoint startPoint = self.contentView.layer.position;
             CGPoint endPoint = self.contentView.layer.position;
-            if (self.style == LTAnimationPopStyleShakeFromTop) {
+            if (self.style == TMAnimationPopStyleShakeFromTop) {
                 endPoint = CGPointMake(startPoint.x, -startPoint.y);
-            } else if (self.style == LTAnimationPopStyleShakeFromBottom) {
+            } else if (self.style == TMAnimationPopStyleShakeFromBottom) {
                 endPoint = CGPointMake(startPoint.x, (kHeight + startPoint.y));
-            } else if (self.style == LTAnimationPopStyleShakeFromLeft) {
+            } else if (self.style == TMAnimationPopStyleShakeFromLeft) {
                 endPoint = CGPointMake(-startPoint.x, startPoint.y);
-            } else if (self.style == LTAnimationPopStyleShakeFromRight) {
+            } else if (self.style == TMAnimationPopStyleShakeFromRight) {
                 endPoint = CGPointMake((kWidth + startPoint.x), startPoint.y);
             }
             [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -214,10 +214,10 @@
     }
 }
 
-- (NSTimeInterval)getPopDefaultDurationWithStyle:(LTAnimationPopStyle)style {
-    if (style == LTAnimationPopStyleNO) {
+- (NSTimeInterval)getPopDefaultDurationWithStyle:(TMAnimationPopStyle)style {
+    if (style == TMAnimationPopStyleNO) {
         return 0.2f;
-    } else if (style == LTAnimationPopStyleScale) {
+    } else if (style == TMAnimationPopStyleScale) {
         return 0.3f;
     } else {
         return 0.8f;

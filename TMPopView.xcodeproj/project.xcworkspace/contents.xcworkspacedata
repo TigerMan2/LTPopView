@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LTPopView.xcodeproj">
+      location = "self:/Users/wangpeng/Desktop/LTPopView/TMPopView.xcodeproj">
    </FileRef>
 </Workspace>

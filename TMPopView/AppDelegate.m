@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  LTPopView
+//  TMPopView
 //
 //  Created by wangpeng on 2018/11/1.
 //  Copyright © 2018 mrstock. All rights reserved.
